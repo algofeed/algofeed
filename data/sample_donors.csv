@@ -1,0 +1,5 @@
+id,name,latitude,longitude,food_type,quantity_kg,expiry_hours
+D1,Budapest Retail Store,47.4979,19.0402,vegetables,120,12
+D2,Local Bakery Partner,47.5110,19.0310,bakery,45,8
+D3,Food Bank Storage,47.4500,19.0400,vegetables,200,36
+D4,Restaurant Donor,47.5300,19.0500,ready_meals,60,6

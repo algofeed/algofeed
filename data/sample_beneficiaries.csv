@@ -1,0 +1,5 @@
+id,name,latitude,longitude,needed_food_type,needed_kg,urgency
+B1,Family Support Center XI,47.4750,19.0450,vegetables,70,5
+B2,Temporary Shelter,47.5050,19.0600,ready_meals,50,5
+B3,Community Kitchen,47.4900,19.0200,bakery,35,4
+B4,Rural Aid Point,47.4100,19.1200,vegetables,90,3

@@ -1,6 +1,48 @@
-ALGOFEED: Open-Source AI-driven logistics for food aid
-We are building ALGOFEED because current food aid logistics are broken. Most local NGOs still use manual spreadsheets and WhatsApp groups to coordinate deliveries, which leads to massive waste in time and fuel. Our project replaces this mess with a dedicated, open-source routing engine. It’s not just a database; it’s a tool that actually calculates the best delivery paths for volunteers, taking into account their schedules and how much food their cars can carry.
+# ALGOFEED – Minimal Humanitarian Routing Prototype
 
-The main result of this project will be a ready-to-use software package. It includes a backend to manage beneficiary data privately, a simple dashboard for coordinators, and an automated notification system via Signal or Matrix. We want to make sure volunteers don't need to learn a complex new app, so we focus on simple, chat-based interfaces.
+ALGOFEED is an early-stage, open-source humanitarian logistics project for food aid redistribution.
 
-By the end of the timeline, we will have a working prototype proven by a real-world pilot with over 200 families. Everything we build will be released as a "Digital Public Good" under an AGPLv3 license. This means any other community in the EU can take our code, host it themselves, and start saving resources immediately.
+This repository currently contains a minimal proof-of-concept demonstrating the core idea:
+
+- match surplus food donations with beneficiary locations,
+- prioritize urgent needs,
+- consider food expiry time,
+- respect volunteer vehicle capacity,
+- reduce unnecessary travel distance.
+
+This is not yet a full production system. It is a transparent prototype showing the first version of the optimization logic.
+
+## Demo
+
+```bash
+pip install -r requirements.txt
+python examples/run_demo.py
+```
+
+## What the prototype does
+
+The demo loads sample donors and beneficiaries, calculates a humanitarian priority score for possible deliveries, and suggests an initial delivery plan.
+
+The score considers:
+
+- distance between donor and beneficiary,
+- urgency of beneficiary need,
+- expiry time of the food,
+- available quantity,
+- vehicle capacity.
+
+## Project direction
+
+Next development steps:
+
+1. Multi-stop route optimization
+2. Real-time volunteer availability
+3. Food category matching
+4. Time-window constraints
+5. API endpoint for NGOs and municipalities
+6. GDPR-compliant data handling
+7. Web dashboard for dispatchers
+
+## License
+
+AGPL-3.0
