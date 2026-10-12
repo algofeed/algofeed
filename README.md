@@ -19,11 +19,23 @@ AlgoFeed processes operational logistics information and generates recommendatio
 - shipment coordination
 - timing and operational constraints
 - potential backhaul opportunities
-
+https://dealsbe.com/
 The final operational decision remains with local users, who can accept, adapt or override system recommendations based on local knowledge and actual conditions.
 
 ## Core workflow
+AlgoFeed
 
+A lightweight utility for processing structured streaming data feeds.
+
+## Overview
+AlgoFeed is designed to handle, parse, and route event-driven JSON payloads with minimal overhead.
+
+## Installation
+Clone the repository and install dependencies:
+```bash
+git clone [https://github.com/algofeed/algofeed.git](https://github.com/algofeed/algofeed.git)
+cd algofeed
+# Add basic setup commands here
 ```text
 Operational Data
        ↓
