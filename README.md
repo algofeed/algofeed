@@ -29,7 +29,17 @@ A lightweight utility for processing structured streaming data feeds.
 
 ## Overview
 AlgoFeed is designed to handle, parse, and route event-driven JSON payloads with minimal overhead.
+## AlgoFeed – Visual Demo
 
+The following animation illustrates the proposed
+AlgoFeed logistics optimization workflow.
+
+![AlgoFeed illustrative demo](docs/media/algofeed-demo.gif)
+
+Note: This is a conceptual illustration, not a
+recording of the live software. The interface elements
+and displayed values are illustrative.
+https://www.youtube.com/watch?v=r0iAFoirZh8
 ## Installation
 Clone the repository and install dependencies:
 ```bash
