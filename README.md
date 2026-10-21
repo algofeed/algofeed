@@ -50,3 +50,14 @@ Routing / Load / Backhaul Recommendations
 Local Operational Decision
        ↓
 KPI Measurement
+## AlgoFeed – Visual Demo
+
+The following animation illustrates the proposed
+AlgoFeed logistics optimization workflow.
+
+![AlgoFeed illustrative demo](docs/media/algofeed-demo.gif)
+
+Note: This is a conceptual illustration, not a
+recording of the live software. The interface elements
+and displayed values are illustrative.
+https://www.youtube.com/watch?v=r0iAFoirZh8
