@@ -43,6 +43,30 @@ https://www.youtube.com/watch?v=r0iAFoirZh8
 ## Installation
 Clone the repository and install dependencies:
 ```bash
+AlgoFeed
+Open-source (AGPL-3.0) decision-support prototype for food logistics. AlgoFeed helps NGOs, food-security initiatives and local logistics actors rank possible food deliveries between donors and beneficiaries.
+AI recommends, local people decide. The software produces a ranked list of suggestions. The final operational decision is always made by local actors.
+Status
+Early prototype. This repository contains a small Python module (src/algofeed_optimizer.py, 141 lines) and a runnable demo on sample data. It is not a production web application, API service or cloud deployment. See docs/architecture.md for the exact scope.
+Last reviewed: 22 October 2026, main branch, commit 5d2ad1b.
+What is implemented
+Function
+Description
+Data model
+Donor (GPS, food type, quantity in kg, expiry in hours) and Beneficiary (GPS, needed food type and quantity, urgency 1-5)
+Distance
+Haversine straight-line distance in km (not road distance or driving time)
+Priority score
+Heuristic based on urgency, expiry time, quantity match and distance, with fixed weights
+Matching
+Pairs donors and beneficiaries with the same food type; proposed quantity = min(donor stock, request, vehicle capacity; default 80 kg)
+Ranking
+All compatible pairs, sorted by score in descending order
+Demo
+CSV loading (pandas) and examples/run_demo.py with 4 donors and 4 beneficiaries (Budapest sample data)
+What is not implemented yet
+Multi-stop route optimization (VRP), multiple vehicles, time windows, stock and demand depletion across selected matches, two-tier collection-to-truck transshipment (5-7 t to 30 t), return-load matching, road and bridge weight limits, web or API layer, user management, KPI export, automated tests.
+These are planned work for the proposed Songea-Namanga (Tanzania) pilot and are subject to technical validation and field data.
 git clone [https://github.com/algofeed/algofeed.git](https://github.com/algofeed/algofeed.git)
 cd algofeed
 # Add basic setup commands here
@@ -71,3 +95,22 @@ Note: This is a conceptual illustration, not a
 recording of the live software. The interface elements
 and displayed values are illustrative.
 https://www.youtube.com/watch?v=r0iAFoirZh8
+
+https://sites.google.com/view/algofeedsoftwareoverview/home
+
+Requires Python 3 (verified with 3.12.3) and pandas >= 2.0.0.
+Input and output
+Input: donors.csv (id, name, latitude, longitude, food_type, quantity_kg, expiry_hours), beneficiaries.csv (id, name, latitude, longitude, needed_food_type, needed_kg, urgency), parameter vehicle_capacity_kg.
+Output: ranked list with donor, beneficiary, food type, proposed quantity (kg), distance (km), expiry time, urgency and score.
+Demo result (sample data)
+The demo produces 6 ranked suggestions. The first is Local Bakery Partner -> Community Kitchen, 35.0 kg of bakery products, 2.48 km, score 31.086. This is a sample-data result, not a field result.
+Pilot context
+The proposed pilot supports the Songea-Namanga maize corridor in Tanzania with the local partner RUDI. A separate 12-week operational pilot with Vizvalaszto Association (Hungary, Oct-Dec 2025) is documented in the application materials. Its operational data is not part of this repository.
+Documentation
+Technical architecture
+Software overview: https://sites.google.com/view/algofeedsoftwareoverview/home
+Technical architecture note: https://sites.google.com/view/algofeedtechnicalarchitecture/home
+Pilot evidence: https://sites.google.com/view/pilot-evidence/home
+License
+GNU Affero General Public License v3.0. See LICENSE.
+
