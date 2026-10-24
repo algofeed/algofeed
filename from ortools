@@ -1,0 +1,62 @@
+from ortools.constraint_solver import routing_enums_pb2
+from ortools.constraint_solver import pywrapcp
+
+def run_optimizer_with_osrm(coordinates, demands, vehicle_capacities):
+    # 1. Lekérdezzük a valós közúti adatokat az OSRM-ből
+    distances, durations = get_road_distance_matrix(coordinates)
+    
+    # 2. Előkészítjük az adatmodellt az OR-Tools számára
+    data = {}
+    # Az OR-Tools általában egész számokat (integers) vár, ezért konvertáljuk a lebegőpontos méreteket
+    data['distance_matrix'] = [[int(val) for val in row] for row in distances]
+    data['time_matrix'] = [[int(val) for val in row] for row in durations]
+    
+    data['demands'] = demands               # Pl. [0, 450, 600, 350] (kg áru)
+    data['vehicle_capacities'] = vehicle_capacities  # Pl. [1200, 1200] (jármű kapacitások)
+    data['num_vehicles'] = len(vehicle_capacities)
+    data['depot'] = 0                       # A logisztikai központ / raktár indexe
+
+    # 3. Létrehozzuk az útvonal-optimalizáló index kezelőt
+    manager = pywrapcp.RoutingIndexManager(
+        len(data['distance_matrix']), 
+        data['num_vehicles'], 
+        data['depot']
+    )
+    routing = pywrapcp.RoutingModel(manager)
+
+    # 4. Távolság / Költség callback regisztrálása
+    def distance_callback(from_index, to_index):
+        from_node = manager.IndexToNode(from_index)
+        to_node = manager.IndexToNode(to_index)
+        return data['distance_matrix'][from_node][to_node]
+
+    transit_callback_index = routing.RegisterTransitCallback(distance_callback)
+    routing.SetArcCostEvaluatorOfAllVehicles(transit_callback_index)
+
+    # 5. Jármű-kapacitás korlát (Capacity Constraint) hozzáadása
+    def demand_callback(from_index):
+        from_node = manager.IndexToNode(from_index)
+        return data['demands'][from_node]
+
+    demand_callback_index = routing.RegisterUnaryTransitCallback(demand_callback)
+    routing.AddDimensionWithVehicleCapacity(
+        demand_callback_index,
+        0,  # null capacity slack
+        data['vehicle_capacities'],
+        True,  # start cumul to zero
+        'Capacity'
+    )
+
+    # 6. Optimalizálás futtatása
+    search_parameters = pywrapcp.DefaultRoutingSearchParameters()
+    search_parameters.first_solution_strategy = (
+        routing_enums_pb2.FirstSolutionStrategy.PATH_CHEAPEST_ARC
+    )
+
+    solution = routing.SolveWithParameters(search_parameters)
+
+    if solution:
+        print("Az optimalizálás sikeresen lefutott!")
+        return solution, manager, routing
+    else:
+        raise RuntimeError("Nem található érvényes útvonal az OSRM adatok alapján.")
