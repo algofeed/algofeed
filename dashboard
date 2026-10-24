@@ -1,0 +1,148 @@
+```html
+<!DOCTYPE html>
+<html lang="hu" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AlgoFeed - Vízválasztó Pilot Simulation Dashboard</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#ecfdf5',
+                            500: '#10b981',
+                            600: '#059669',
+                            900: '#064e3b',
+                        },
+                        cyanbrand: {
+                            500: '#06b6d4',
+                            600: '#0891b2',
+                            950: '#083344',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Lucide Icons CDN -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <!-- Custom Scrollbar & Font Styling -->
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #090d16;
+            color: #f1f5f9;
+        }
+        .font-mono {
+            font-family: 'JetBrains Mono', monospace;
+        }
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0f172a;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #1e293b;
+            border-radius: 3px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #334155;
+        }
+        @keyframes pulseGlow {
+            0%, 100% { opacity: 0.4; }
+            50% { opacity: 0.8; }
+        }
+        .glow-effect {
+            animation: pulseGlow 3s infinite ease-in-out;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col antialiased selection:bg-emerald-500 selection:text-black">
+
+    <!-- HEADER / NAVIGATION -->
+    <header class="border-b border-slate-800/80 bg-slate-950/80 backdrop-blur-md sticky top-0 z-50 px-4 md:px-8 py-4">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+            
+            <div class="flex items-center gap-3">
+                <div class="bg-gradient-to-tr from-emerald-500 to-cyan-500 p-2.5 rounded-xl shadow-lg shadow-emerald-500/20">
+                    <i data-lucide="zap" class="w-6 h-6 text-slate-950 stroke-[2.5]"></i>
+                </div>
+                <div>
+                    <div class="flex items-center gap-2">
+                        <h1 class="font-extrabold text-xl tracking-tight text-white">ALGOFEED</h1>
+                        <span class="text-[10px] bg-emerald-950/80 text-emerald-400 border border-emerald-800/60 px-2 py-0.5 rounded-full font-mono font-semibold">
+                            PILOT-2025-VIG
+                        </span>
+                    </div>
+                    <p class="text-xs text-slate-400 font-medium">Vízválasztó Association MVP Simulation Dashboard</p>
+                </div>
+            </div>
+
+            <div class="flex flex-wrap items-center gap-3 text-xs font-mono">
+                <div class="bg-slate-900/90 border border-slate-800 px-3 py-1.5 rounded-lg flex items-center gap-2">
+                    <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                    <span class="text-slate-400">TRL 6 Operational</span>
+                </div>
+                <div class="bg-slate-900/90 border border-slate-800 px-3 py-1.5 rounded-lg flex items-center gap-2 text-slate-300">
+                    <i data-lucide="truck" class="w-3.5 h-3.5 text-cyan-400"></i>
+                    <span>2 Hűtőjármű (3.5t)</span>
+                </div>
+                <div class="bg-slate-900/90 border border-slate-800 px-3 py-1.5 rounded-lg flex items-center gap-2 text-slate-300">
+                    <i data-lucide="store" class="w-3.5 h-3.5 text-emerald-400"></i>
+                    <span>3 Retail Site</span>
+                </div>
+            </div>
+
+        </div>
+    </header>
+
+    <!-- MAIN CONTAINER -->
+    <main class="flex-1 max-w-7xl w-full mx-auto p-4 md:p-8 space-y-8">
+
+        <!-- SECTION 1: KEY PERFORMANCE INDICATORS (BEFORE vs AFTER) -->
+        <section class="space-y-4">
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-end gap-2 border-b border-slate-800/60 pb-3">
+                <div>
+                    <h2 class="text-lg font-bold text-white flex items-center gap-2">
+                        <i data-lucide="bar-chart-3" class="w-5 h-5 text-emerald-400"></i>
+                        1. Fő KPI Eredmények (Manuális vs. AlgoFeed AI Matching)
+                    </h2>
+                    <p class="text-xs text-slate-400">12 hetes tesztidőszak mért hatékonysági mutatói (2025. Okt 1 - Dec 24)</p>
+                </div>
+                <div class="text-xs font-mono text-emerald-400 bg-emerald-950/40 border border-emerald-900/60 px-3 py-1 rounded-md">
+                    Audit Status: CINEA Ready
+                </div>
+            </div>
+
+            <!-- KPI Grid -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                
+                <!-- KPI 1: Response Time -->
+                <div class="bg-slate-900/60 border border-slate-800 rounded-2xl p-5 hover:border-slate-700 transition-all">
+                    <div class="flex justify-between items-start mb-3">
+                        <span class="text-xs font-semibold uppercase tracking-wider text-slate-400">Reagálási Idő</span>
+                        <span class="bg-emerald-950 text-emerald-400 text-xs font-mono font-bold px-2 py-0.5 rounded border border-emerald-800/50">
+                            -98.6%
+                        </span>
+                    </div>
+                    <div class="flex items-baseline justify-between mb-2">
+                        <span class="text-2xl md:text-3xl font-extrabold font-mono text-emerald-400">2.5 perc</span>
+                        <span class="text-xs font-mono text-slate-500 line-through">180 perc</span>
+                    </div>
+                    <div class="w-full bg-slate-800 h-1.5 rounded-full overflow-hidden">
+                        <div class="bg-emerald-500 h-full w-[98.6%] rounded-full"></div>
+                    </div>
+                    <p class="text-[11px] text-slate-400 mt-2">Signal-to-Delivery automatizált illesztés</p>
+                </div>
+
+                <!-- KPI 2: Empty Transit -->
+                <div class="bg-slate-900/60 border border-slate-800 rounded-
