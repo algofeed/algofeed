@@ -114,3 +114,45 @@ Pilot evidence: https://sites.google.com/view/pilot-evidence/home
 License
 GNU Affero General Public License v3.0. See LICENSE.
 
+# Algofeed 🍲🤖
+
+> Open-source AI-driven logistics for food aid.[span_1](start_span)[span_1](end_span)
+
+Algofeed is an open-source platform designed to optimize food aid distribution using Artificial Intelligence[span_2](start_span)[span_2](end_span). By predicting demand, minimizing food waste, and automating delivery routing, Algofeed helps non-profits, food banks, and volunteers deliver aid efficiently where it is needed most.
+
+---
+
+## 🚀 Key Features
+
+* Smart Demand Forecasting: Leverages machine learning models to predict food needs across different regions.
+* Automated Route Optimization: Calculates the most efficient delivery routes to reduce transit time and logistics costs.
+* Real-time Inventory Tracking: Monitors food supplies, expiration dates, and donor resources.
+* Volunteer & Partner Portal: Easily connects donors, logistics partners, and local food banks.
+
+---
+
+## 🛠️ Tech Stack
+
+* Backend: Python / FastAPI (or Django/Node.js)
+* AI/ML: PyTorch / TensorFlow / Scikit-Learn
+* Database: PostgreSQL / Redis
+* Frontend: React / Next.js
+* Deployment: Docker / Kubernetes
+
+---
+
+## 🏁 Quick Start
+
+### Prerequisites
+
+Ensure you have the following installed on your system:
+* [Python 3.10+](https://www.python.org/)
+* [Git](https://git-scm.com/)
+* [Docker](https://www.docker.com/) (optional, recommended)
+
+### Installation
+
+1. Clone the repository:
+   ```bash
+   git clone [https://github.com/algofeed/algofeed.git](https://github.com/algofeed/algofeed.git)
+   cd algofeed
